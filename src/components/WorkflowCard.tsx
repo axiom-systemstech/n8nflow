@@ -39,14 +39,14 @@ export default function WorkflowCard({ workflow, onSelect }: WorkflowCardProps) 
           {workflow.description}
         </p>
 
-        {/* Badges de Apps con Logos Reales */}
-        <div className="flex flex-wrap gap-1.5 mb-6">
+        {/* Badges de Apps con Logos Locales */}
+        <div className="flex flex-wrap gap-1.5 mb-6 min-h-[30px]">
           {workflow.apps.map((app, i) => (
             <span
               key={i}
               className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-slate-100 dark:bg-slate-800/80 border border-slate-200/60 dark:border-slate-700/50 text-[11px] font-medium text-slate-700 dark:text-slate-300"
             >
-              <AppLogo appName={app} className="w-3.5 h-3.5" />
+              <AppLogo appName={app} className="w-4 h-4" />
               <span>{app}</span>
             </span>
           ))}
