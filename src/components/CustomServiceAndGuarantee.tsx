@@ -22,7 +22,7 @@ export default function CustomServiceAndGuarantee() {
           </div>
 
           <a
-            href="https://t.me" 
+            href="https://t.me/n8nflow_support" 
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-full bg-[#1b1730] text-white hover:bg-black text-xs font-[650] transition-colors shadow-sm self-start"
