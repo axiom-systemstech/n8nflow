@@ -1,6 +1,7 @@
 'use client';
 
 import { Workflow } from '../types/workflow';
+import AppLogo from './AppLogo';
 
 interface WorkflowCardProps {
   workflow: Workflow;
@@ -34,9 +35,22 @@ export default function WorkflowCard({ workflow, onSelect }: WorkflowCardProps) 
           {workflow.title}
         </h3>
 
-        <p className="text-slate-600 dark:text-slate-400 text-sm line-clamp-3 mb-6 leading-relaxed">
+        <p className="text-slate-600 dark:text-slate-400 text-sm line-clamp-3 mb-5 leading-relaxed">
           {workflow.description}
         </p>
+
+        {/* Badges de Apps con Logos Reales */}
+        <div className="flex flex-wrap gap-1.5 mb-6">
+          {workflow.apps.map((app, i) => (
+            <span
+              key={i}
+              className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-slate-100 dark:bg-slate-800/80 border border-slate-200/60 dark:border-slate-700/50 text-[11px] font-medium text-slate-700 dark:text-slate-300"
+            >
+              <AppLogo appName={app} className="w-3.5 h-3.5" />
+              <span>{app}</span>
+            </span>
+          ))}
+        </div>
       </div>
 
       <div className="pt-4 border-t border-slate-200/80 dark:border-slate-800/60 flex items-center justify-between mt-auto">
