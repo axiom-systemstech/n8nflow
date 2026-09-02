@@ -8,6 +8,9 @@ import RoiCalculator from '../components/RoiCalculator';
 import CategoryFilter from '../components/CategoryFilter';
 import WorkflowGrid from '../components/WorkflowGrid';
 import WorkflowModal from '../components/WorkflowModal';
+import BundleBanner from '../components/BundleBanner';
+import Testimonials from '../components/Testimonials';
+import Newsletter from '../components/Newsletter';
 import FaqSection from '../components/FaqSection';
 import { WORKFLOWS } from '../data/workflows';
 import { Workflow } from '../types/workflow';
@@ -50,6 +53,12 @@ export default function Home() {
           onSelectWorkflow={(wf) => setSelectedWorkflow(wf)} 
         />
       </section>
+
+      <BundleBanner />
+
+      <Testimonials />
+
+      <Newsletter />
 
       <FaqSection />
 
