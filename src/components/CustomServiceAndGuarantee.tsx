@@ -22,7 +22,7 @@ export default function CustomServiceAndGuarantee() {
           </div>
 
           <a
-            href="https://t.me/" 
+            href="https://t.me/n8nfloww" 
             target="_blank"
             rel="noopener noreferrer"
             className="shrink-0 px-6 py-4 rounded-2xl bg-gradient-to-r from-rose-500 to-orange-500 hover:from-rose-600 hover:to-orange-600 text-white font-black text-xs uppercase tracking-wider shadow-xl hover:scale-105 active:scale-95 transition-all flex items-center gap-2"
@@ -69,4 +69,3 @@ export default function CustomServiceAndGuarantee() {
     </section>
   );
 }
-
