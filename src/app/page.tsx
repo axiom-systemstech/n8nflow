@@ -9,9 +9,11 @@ import CategoryFilter from '../components/CategoryFilter';
 import WorkflowGrid from '../components/WorkflowGrid';
 import WorkflowModal from '../components/WorkflowModal';
 import BundleBanner from '../components/BundleBanner';
+import CustomServiceAndGuarantee from '../components/CustomServiceAndGuarantee';
 import Testimonials from '../components/Testimonials';
 import Newsletter from '../components/Newsletter';
 import FaqSection from '../components/FaqSection';
+import LiveSalesNotifier from '../components/LiveSalesNotifier';
 import { WORKFLOWS } from '../data/workflows';
 import { Workflow } from '../types/workflow';
 
@@ -56,6 +58,8 @@ export default function Home() {
 
       <BundleBanner />
 
+      <CustomServiceAndGuarantee />
+
       <Testimonials />
 
       <Newsletter />
@@ -66,6 +70,8 @@ export default function Home() {
         workflow={selectedWorkflow}
         onClose={() => setSelectedWorkflow(null)}
       />
+
+      <LiveSalesNotifier />
 
       <footer className="text-center text-xs text-slate-500 dark:text-slate-400 py-8 border-t border-slate-200/20 dark:border-slate-800/40">
         <p>© {new Date().getFullYear()} n8nflow. Diseñado para automatizadores profesionales.</p>
