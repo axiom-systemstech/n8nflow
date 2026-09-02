@@ -1,57 +1,70 @@
 'use client';
 
+import React from 'react';
+import { Download, Sliders, PlayCircle } from 'lucide-react';
+
 const STEPS = [
   {
+    icon: Download,
     number: '01',
-    title: 'Elige tu Workflow',
-    description: 'Explora nuestro catálogo verificado y encuentra la automatización que necesitas para tu negocio.',
-    icon: '📦',
+    title: 'Elige y Descarga',
+    description: 'Explora nuestro catálogo, selecciona la plantilla que mejor se adapte a tu necesidad y obtén el archivo JSON de inmediato.',
   },
   {
+    icon: Sliders,
     number: '02',
-    title: 'Importa a n8n',
-    description: 'Descarga el archivo JSON e impórtalo directamente en tu instancia de n8n con un solo clic.',
-    icon: '⚡',
+    title: 'Importa en n8n',
+    description: 'Abre tu propia instancia de n8n, crea un nuevo workflow e importa el archivo descargado con un par de clics.',
   },
   {
+    icon: PlayCircle,
     number: '03',
-    title: 'Conecta tus APIS',
-    description: 'Añade tus credenciales (OpenAI, Gmail, Stripe, etc.) y pon a ejecutar tus procesos en segundos.',
-    icon: '🚀',
+    title: 'Conecta tus Credenciales',
+    description: 'Asigna tus claves de API (OpenAI, WhatsApp, CRM, etc.) ¡y pon a funcionar tus automatizaciones en minutos!',
   },
 ];
 
 export default function HowItWorks() {
   return (
-    <section id="how-it-works" className="max-w-5xl mx-auto px-4 py-16 scroll-mt-24">
-      <div className="text-center mb-12 space-y-2">
-        <span className="text-xs font-mono font-bold text-rose-500 uppercase tracking-widest">
-          Despliegue Sin Complicaciones
-        </span>
-        <h2 className="text-2xl sm:text-4xl font-black text-slate-900 dark:text-white">
+    <section className="max-w-[1120px] mx-auto px-4 py-12">
+      <div className="text-center max-w-2xl mx-auto mb-10">
+        <h2 className="text-2xl sm:text-3xl font-[800] text-[#1b1730] tracking-tight">
           ¿Cómo funciona n8nflow?
         </h2>
+        <p className="text-zinc-600 font-[500] text-sm mt-2">
+          Poner a funcionar un flujo profesional nunca fue tan sencillo. En 3 pasos estarás ahorrando horas.
+        </p>
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-        {STEPS.map((step) => (
-          <div key={step.number} className="glass-panel p-6 rounded-3xl relative overflow-hidden flex flex-col justify-between">
-            <span className="text-4xl font-black text-slate-300 dark:text-slate-800 absolute top-4 right-4 font-mono">
-              {step.number}
-            </span>
-            <div>
-              <div className="text-3xl mb-4">{step.icon}</div>
-              <h3 className="text-lg font-bold text-slate-900 dark:text-white mb-2">
-                {step.title}
-              </h3>
-              <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
-                {step.description}
-              </p>
+        {STEPS.map((step) => {
+          const Icon = step.icon;
+          return (
+            <div
+              key={step.number}
+              className="relative p-6 rounded-[28px] bg-[linear-gradient(180deg,rgba(255,255,255,0.88)_0%,rgba(255,255,255,0.62)_100%)] border border-white/40 shadow-[0_24px_64px_-16px_rgba(60,20,80,0.12)] backdrop-blur-[24px] flex flex-col gap-4"
+            >
+              <div className="flex items-center justify-between">
+                <div className="w-10 h-10 rounded-2xl bg-violet-600/10 border border-violet-500/20 flex items-center justify-center text-violet-600">
+                  <Icon className="w-5 h-5" />
+                </div>
+                <span className="text-2xl font-[800] text-zinc-300 font-mono">
+                  {step.number}
+                </span>
+              </div>
+
+              <div>
+                <h3 className="text-[16px] font-[750] text-[#1b1730] tracking-tight mb-2">
+                  {step.title}
+                </h3>
+                <p className="text-[13px] text-zinc-600 font-[500] leading-relaxed">
+                  {step.description}
+                </p>
+              </div>
             </div>
-          </div>
-        ))}
+          );
+        })}
       </div>
     </section>
   );
 }
-
