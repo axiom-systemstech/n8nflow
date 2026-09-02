@@ -8,19 +8,19 @@ const REVIEWS = [
     name: 'Carlos Mendoza',
     role: 'Fundador de Agencia de Marketing',
     content: 'Compré la plantilla de integración con WhatsApp y OpenAI. Nos ahorró semanas de desarrollo técnico. Funcionó a la primera.',
-    avatar: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=100&auto=format&fit=crop&q=80',
+    avatar: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=120&auto=format&fit=crop&q=80',
   },
   {
     name: 'Elena Rostova',
     role: 'Ops Manager en SaaS',
     content: 'El catálogo de flujos es brutal. La estructura del JSON está super bien documentada y limpia. Muy recomendable.',
-    avatar: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&auto=format&fit=crop&q=80',
+    avatar: 'https://images.unsplash.com/photo-1580489944761-15a19d654956?w=120&auto=format&fit=crop&q=80',
   },
   {
     name: 'David Sola',
     role: 'Consultor de Automatización',
     content: 'Lo que más me gusta es el soporte post-venta. Tuve un problema con un Webhook y me ayudaron a arreglarlo en minutos.',
-    avatar: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=100&auto=format&fit=crop&q=80',
+    avatar: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=120&auto=format&fit=crop&q=80',
   },
 ];
 
@@ -57,7 +57,7 @@ export default function Testimonials() {
               <img
                 src={rev.avatar}
                 alt={rev.name}
-                className="w-9 h-9 rounded-full object-cover border border-white"
+                className="w-10 h-10 rounded-full object-cover border-2 border-white shadow-xs"
               />
               <div>
                 <h4 className="text-xs font-[750] text-[#1b1730]">{rev.name}</h4>
