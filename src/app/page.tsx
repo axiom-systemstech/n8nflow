@@ -7,12 +7,15 @@ import HowItWorks from '../components/HowItWorks';
 import RoiCalculator from '../components/RoiCalculator';
 import CategoryFilter from '../components/CategoryFilter';
 import WorkflowGrid from '../components/WorkflowGrid';
+import WorkflowModal from '../components/WorkflowModal';
 import FaqSection from '../components/FaqSection';
 import { WORKFLOWS } from '../data/workflows';
+import { Workflow } from '../types/workflow';
 
 export default function Home() {
   const [searchQuery, setSearchQuery] = useState('');
   const [activeCategory, setActiveCategory] = useState('all');
+  const [selectedWorkflow, setSelectedWorkflow] = useState<Workflow | null>(null);
 
   const filteredWorkflows = WORKFLOWS.filter((workflow) => {
     const matchesCategory =
@@ -29,9 +32,6 @@ export default function Home() {
 
   return (
     <main className="min-h-screen pb-24 relative overflow-hidden">
-      
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[300px] bg-gradient-to-tr from-rose-500/15 via-orange-500/10 to-transparent blur-[120px] pointer-events-none -z-10" />
-
       <Navbar />
 
       <Hero searchQuery={searchQuery} setSearchQuery={setSearchQuery} />
@@ -45,15 +45,22 @@ export default function Home() {
           activeCategory={activeCategory}
           setActiveCategory={setActiveCategory}
         />
-        <WorkflowGrid workflows={filteredWorkflows} />
+        <WorkflowGrid 
+          workflows={filteredWorkflows} 
+          onSelectWorkflow={(wf) => setSelectedWorkflow(wf)} 
+        />
       </section>
 
       <FaqSection />
 
+      <WorkflowModal
+        workflow={selectedWorkflow}
+        onClose={() => setSelectedWorkflow(null)}
+      />
+
       <footer className="text-center text-xs text-slate-500 dark:text-slate-400 py-8 border-t border-slate-200/20 dark:border-slate-800/40">
         <p>© {new Date().getFullYear()} n8nflow. Diseñado para automatizadores profesionales.</p>
       </footer>
-
     </main>
   );
 }
