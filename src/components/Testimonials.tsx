@@ -1,62 +1,67 @@
 'use client';
 
-const TESTIMONIALS = [
+import React from 'react';
+import { Star } from 'lucide-react';
+
+const REVIEWS = [
   {
     name: 'Carlos Mendoza',
-    role: 'Fundador de Agencia AI',
-    comment: 'Las plantillas de n8nflow nos han ahorrado al menos 40 horas de desarrollo en el último mes. La plantilla de responder leads con GPT es pura magia.',
-    avatar: '/carlos.png',
-    rating: 5,
+    role: 'Fundador de Agencia de Marketing',
+    content: 'Compré la plantilla de integración con WhatsApp y OpenAI. Nos ahorró semanas de desarrollo técnico. Funcionó a la primera.',
+    avatar: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=100&auto=format&fit=crop&q=80',
   },
   {
     name: 'Elena Rostova',
-    role: 'Operations Lead',
-    comment: 'Implementamos la automatización de Stripe y Slack en menos de 10 minutos. Súper limpio, bien estructurado y fácil de adaptar.',
-    avatar: '/elena.png',
-    rating: 5,
+    role: 'Ops Manager en SaaS',
+    content: 'El catálogo de flujos es brutal. La estructura del JSON está super bien documentada y limpia. Muy recomendable.',
+    avatar: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&auto=format&fit=crop&q=80',
   },
   {
-    name: 'Javier Roca',
-    role: 'Freelancer No-Code',
-    comment: 'El retorno de inversión es inmediato. Solo por no tener que configurar los nodos desde cero, el costo de la plantilla se paga solo el primer día.',
-    avatar: '/javier.png',
-    rating: 5,
+    name: 'David Sola',
+    role: 'Consultor de Automatización',
+    content: 'Lo que más me gusta es el soporte post-venta. Tuve un problema con un Webhook y me ayudaron a arreglarlo en minutos.',
+    avatar: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=100&auto=format&fit=crop&q=80',
   },
 ];
 
 export default function Testimonials() {
   return (
-    <section className="max-w-6xl mx-auto px-4 my-20">
-      <div className="text-center mb-12">
-        <h2 className="text-2xl sm:text-3xl font-black text-slate-900 dark:text-white mb-2">
-          Lo que dicen quienes ya automatizan
+    <section className="max-w-[1120px] mx-auto px-4 py-12">
+      <div className="text-center max-w-xl mx-auto mb-10">
+        <h2 className="text-2xl sm:text-3xl font-[800] text-[#1b1730] tracking-tight">
+          Lo que dicen otros automatizadores
         </h2>
-        <p className="text-slate-600 dark:text-slate-400 text-sm">
-          Cientos de agencias y creadores confían en nuestros flujos verificados.
+        <p className="text-zinc-600 font-[500] text-sm mt-1">
+          Miles de horas ahorradas en agencias, startups y negocios digitales.
         </p>
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-        {TESTIMONIALS.map((t, i) => (
-          <div key={i} className="glass-panel rounded-3xl p-6 flex flex-col justify-between">
-            <div>
-              <div className="flex gap-1 text-amber-400 text-sm mb-4">
-                {'★'.repeat(t.rating)}
+        {REVIEWS.map((rev, idx) => (
+          <div
+            key={idx}
+            className="p-6 rounded-[28px] bg-[linear-gradient(180deg,rgba(255,255,255,0.88)_0%,rgba(255,255,255,0.62)_100%)] border border-white/40 shadow-[0_24px_64px_-16px_rgba(60,20,80,0.12)] backdrop-blur-[24px] flex flex-col justify-between gap-4"
+          >
+            <div className="space-y-3">
+              <div className="flex gap-1 text-amber-400">
+                {[...Array(5)].map((_, i) => (
+                  <Star key={i} className="w-4 h-4 fill-amber-400" />
+                ))}
               </div>
-              <p className="text-slate-700 dark:text-slate-300 text-sm leading-relaxed mb-6 italic">
-                "{t.comment}"
+              <p className="text-zinc-700 text-xs sm:text-sm font-[500] leading-relaxed italic">
+                "{rev.content}"
               </p>
             </div>
 
-            <div className="flex items-center gap-3 pt-4 border-t border-slate-200/80 dark:border-slate-800/60">
+            <div className="flex items-center gap-3 pt-3 border-t border-zinc-200/50">
               <img
-                src={t.avatar}
-                alt={t.name}
-                className="w-10 h-10 rounded-full object-cover border border-slate-300 dark:border-slate-700 shadow-sm"
+                src={rev.avatar}
+                alt={rev.name}
+                className="w-9 h-9 rounded-full object-cover border border-white"
               />
               <div>
-                <h4 className="text-sm font-bold text-slate-900 dark:text-white">{t.name}</h4>
-                <p className="text-xs text-slate-500 dark:text-slate-400">{t.role}</p>
+                <h4 className="text-xs font-[750] text-[#1b1730]">{rev.name}</h4>
+                <p className="text-[11px] text-zinc-500 font-[500]">{rev.role}</p>
               </div>
             </div>
           </div>
