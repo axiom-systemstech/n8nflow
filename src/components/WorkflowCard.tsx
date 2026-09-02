@@ -1,7 +1,8 @@
 'use client';
 
-import { Workflow } from '../types/workflow';
-import AppLogo from './AppLogo';
+import React from 'react';
+import { ArrowUpRight } from 'lucide-react';
+import { Workflow } from '@/types/workflow';
 
 interface WorkflowCardProps {
   workflow: Workflow;
@@ -10,71 +11,53 @@ interface WorkflowCardProps {
 
 export default function WorkflowCard({ workflow, onSelect }: WorkflowCardProps) {
   return (
-    <div 
+    <div
       onClick={() => onSelect(workflow)}
-      className="glass-panel rounded-3xl p-6 flex flex-col justify-between relative overflow-hidden transition-all duration-300 hover:-translate-y-1.5 shadow-xl group cursor-pointer"
+      className="group relative cursor-pointer rounded-[28px] bg-white/80 dark:bg-zinc-900/80 border border-white/50 dark:border-zinc-800 p-6 shadow-[0_16px_40px_-12px_rgba(31,38,135,0.07)] backdrop-blur-md transition-all duration-300 hover:-translate-y-1 hover:shadow-xl hover:border-violet-300 dark:hover:border-violet-700 flex flex-col justify-between h-full"
     >
-      
-      {workflow.featured && (
-        <div className="absolute top-4 right-4 px-2.5 py-0.5 rounded-full text-[10px] font-mono font-bold uppercase tracking-wider bg-amber-500/10 border border-amber-500/40 text-amber-600 dark:text-amber-400">
-          ★ Top Ventas
-        </div>
-      )}
-
       <div>
-        <div className="flex flex-wrap items-center gap-1.5 mb-4">
-          <span className="text-[10px] font-mono font-bold px-2 py-0.5 rounded bg-rose-500/10 text-rose-600 dark:text-rose-400">
-            {workflow.difficulty}
-          </span>
-          <span className="text-[10px] font-mono text-slate-400">
-            • {workflow.setupTime}
-          </span>
-        </div>
-
-        <h3 className="text-xl font-bold text-slate-900 dark:text-white mb-2 group-hover:text-rose-500 transition-colors">
-          {workflow.title}
-        </h3>
-
-        <p className="text-slate-600 dark:text-slate-400 text-sm line-clamp-3 mb-5 leading-relaxed">
-          {workflow.description}
-        </p>
-
-        {/* Badges de Apps con Logos Locales */}
-        <div className="flex flex-wrap gap-1.5 mb-6 min-h-[30px]">
-          {workflow.apps.map((app, i) => (
-            <span
-              key={i}
-              className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-slate-100 dark:bg-slate-800/80 border border-slate-200/60 dark:border-slate-700/50 text-[11px] font-medium text-slate-700 dark:text-slate-300"
+        {/* Banner de Logos Integrados */}
+        <div className="flex items-center gap-2 mb-4 flex-wrap">
+          {workflow.apps?.map((app, index) => (
+            <div
+              key={index}
+              className="w-8 h-8 rounded-xl bg-zinc-100 dark:bg-zinc-800 border border-zinc-200/60 dark:border-zinc-700/60 p-1.5 flex items-center justify-center shadow-2xs group-hover:scale-105 transition-transform"
             >
-              <AppLogo appName={app} className="w-4 h-4" />
-              <span>{app}</span>
-            </span>
+              <img
+                src={`/apps/${app.toLowerCase()}.png`}
+                alt={app}
+                className="w-full h-full object-contain"
+                onError={(e) => {
+                  // Fallback por si la imagen no existe
+                  (e.target as HTMLElement).style.display = 'none';
+                }}
+              />
+            </div>
           ))}
         </div>
+
+        {/* Título y Descripción */}
+        <h3 className="text-base font-[750] text-[#1b1730] dark:text-white mb-2 group-hover:text-violet-600 dark:group-hover:text-violet-400 transition-colors">
+          {workflow.title}
+        </h3>
+        <p className="text-xs text-zinc-600 dark:text-zinc-400 font-[500] line-clamp-2 mb-4 leading-relaxed">
+          {workflow.description}
+        </p>
       </div>
 
-      <div className="pt-4 border-t border-slate-200/80 dark:border-slate-800/60 flex items-center justify-between mt-auto">
-        <div>
-          <span className="block text-[10px] text-slate-500 dark:text-slate-400 uppercase font-mono font-bold">
-            Ahorras {workflow.timeSaved}
-          </span>
-          <span className="text-2xl font-black text-slate-900 dark:text-white">
+      {/* Pie de la Tarjeta */}
+      <div className="flex items-center justify-between pt-4 border-t border-zinc-100 dark:border-zinc-800 mt-auto">
+        <div className="flex items-center gap-1.5">
+          <span className="text-lg font-[800] text-[#1b1730] dark:text-white">
             ${workflow.price}
           </span>
+          <span className="text-[10px] text-zinc-400 font-[600]">USD</span>
         </div>
 
-        <button
-          onClick={(e) => {
-            e.stopPropagation();
-            onSelect(workflow);
-          }}
-          className="px-4 py-2.5 rounded-2xl bg-gradient-to-r from-rose-500 via-rose-600 to-orange-500 text-white font-black text-xs uppercase tracking-wider flex items-center gap-1.5 shadow-lg shadow-rose-500/30 hover:scale-105 active:scale-95 transition-all duration-200 border border-rose-400/30"
-        >
-          <span>Ver Detalle</span>
-          <span className="text-sm">👁️</span>
-        </button>
+        <div className="w-8 h-8 rounded-full bg-zinc-100 dark:bg-zinc-800 group-hover:bg-violet-600 group-hover:text-white text-zinc-700 dark:text-zinc-300 flex items-center justify-center transition-all">
+          <ArrowUpRight className="w-4 h-4" />
+        </div>
       </div>
-
     </div>
   );
 }
