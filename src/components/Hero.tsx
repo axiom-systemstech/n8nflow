@@ -1,5 +1,8 @@
 'use client';
 
+import React from 'react';
+import { Search, Sparkles, CheckCircle2 } from 'lucide-react';
+
 interface HeroProps {
   searchQuery: string;
   setSearchQuery: (query: string) => void;
@@ -7,65 +10,66 @@ interface HeroProps {
 
 export default function Hero({ searchQuery, setSearchQuery }: HeroProps) {
   return (
-    <section className="max-w-4xl mx-auto text-center px-4 mb-16 space-y-8">
-      
-      {/* Badge Flotante estilo Neón */}
-      <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-rose-500/30 bg-rose-500/10 text-rose-500 dark:text-rose-400 text-xs font-bold uppercase tracking-wider shadow-[0_0_15px_rgba(255,109,90,0.2)]">
-        <span className="w-2 h-2 rounded-full bg-rose-500 animate-ping" />
-        n8n Verified Workflows
+    <section className="relative pt-12 pb-8 max-w-[1120px] mx-auto px-4">
+      {/* Fondo con degradados suaves (Glows) */}
+      <div className="absolute inset-0 pointer-events-none overflow-hidden z-0">
+        <div className="absolute -top-[100px] left-1/2 -translate-x-1/2 w-[600px] h-[600px] bg-[#bfdbfe] blur-[120px] opacity-40 rounded-full" />
+        <div className="absolute top-[20%] left-[10%] w-[500px] h-[500px] bg-[#ddd6fe] blur-[120px] opacity-50 rounded-full" />
+        <div className="absolute top-[20%] right-[10%] w-[500px] h-[500px] bg-[#f5d0fe] blur-[120px] opacity-50 rounded-full" />
       </div>
 
-      {/* Titular Principal */}
-      <h1 className="text-4xl sm:text-6xl font-black tracking-tight leading-tight text-slate-900 dark:text-white">
-        Automatiza tu negocio en minutos,{' '}
-        <span className="bg-gradient-to-r from-rose-500 via-orange-400 to-amber-500 bg-clip-text text-transparent">
-          no en semanas.
-        </span>
-      </h1>
+      <div className="relative z-10 flex flex-col items-center text-center max-w-3xl mx-auto gap-6">
+        {/* Badge superior */}
+        <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/70 border border-white/60 shadow-sm backdrop-blur-md">
+          <Sparkles className="w-4 h-4 text-violet-600" />
+          <span className="text-[12px] font-[650] text-zinc-700">
+            Plantillas de n8n Listas para Importar
+          </span>
+        </div>
 
-      {/* Subtítulo */}
-      <p className="text-slate-600 dark:text-slate-400 text-base sm:text-lg max-w-2xl mx-auto leading-relaxed">
-        Descarga plantillas de n8n listas para producción. Copia el archivo JSON, conecta tus claves API y pon a rodar tus flujos al instante.
-      </p>
+        {/* Título Principal */}
+        <h1 className="text-4xl sm:text-5xl md:text-6xl font-[800] text-[#1b1730] tracking-tight leading-[1.15]">
+          Automatiza tu negocio en minutos con <span className="text-transparent bg-clip-text bg-gradient-to-r from-violet-600 to-indigo-600">flujos probados</span>
+        </h1>
 
-      {/* Buscador Skeuomórfico con efecto de relieve hundido */}
-      <div className="max-w-xl mx-auto pt-2">
-        <div className="relative glass-panel p-2 rounded-2xl shadow-2xl flex items-center">
-          <span className="pl-3 text-slate-400">🔍</span>
-          <input
-            type="text"
-            value={searchQuery}
-            onChange={(e) => setSearchQuery(e.target.value)}
-            placeholder="Buscar por app (ej. OpenAI, Gmail, Stripe...)"
-            className="w-full bg-transparent px-3 py-2 text-slate-900 dark:text-white placeholder-slate-400 text-sm focus:outline-none"
-          />
-          {searchQuery && (
-            <button
-              onClick={() => setSearchQuery('')}
-              className="px-2 text-xs text-slate-400 hover:text-rose-500 font-mono"
-            >
-              LIMPIAR
-            </button>
-          )}
+        <p className="text-base sm:text-lg text-zinc-600 font-[500] max-w-2xl leading-relaxed">
+          Ahorra cientos de horas de trabajo manual. Descarga flujos de trabajo listos para usar en tu propia instancia de n8n.
+        </p>
+
+        {/* Buscador de Flujos con estética del nuevo diseño */}
+        <div className="w-full max-w-xl mt-2">
+          <div className="relative flex items-center p-2 rounded-[24px] bg-[linear-gradient(180deg,rgba(255,255,255,0.95)_0%,rgba(255,255,255,0.75)_100%)] border border-white shadow-[0_20px_50px_-12px_rgba(60,20,80,0.12)] backdrop-blur-[24px]">
+            <Search className="w-5 h-5 text-zinc-400 ml-3" />
+            <input
+              type="text"
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+              placeholder="Buscar por app (Hubspot, WhatsApp, OpenAI...)..."
+              className="w-full px-3 py-2 bg-transparent text-[14px] font-[550] text-[#1b1730] placeholder:text-zinc-400 focus:outline-none"
+            />
+            {searchQuery && (
+              <button
+                onClick={() => setSearchQuery('')}
+                className="text-xs text-zinc-400 hover:text-zinc-600 px-2 font-[600]"
+              >
+                Limpiar
+              </button>
+            )}
+          </div>
+        </div>
+
+        {/* Puntos clave debajo del buscador */}
+        <div className="flex flex-wrap items-center justify-center gap-4 sm:gap-6 text-xs sm:text-sm font-[600] text-zinc-600 pt-2">
+          <div className="flex items-center gap-1.5">
+            <CheckCircle2 className="w-4 h-4 text-emerald-500" />
+            <span>Descarga en JSON instantánea</span>
+          </div>
+          <div className="flex items-center gap-1.5">
+            <CheckCircle2 className="w-4 h-4 text-emerald-500" />
+            <span>Soporte e instalación disponible</span>
+          </div>
         </div>
       </div>
-
-      {/* Bloque de Métricas / Stats en Cristal */}
-      <div className="grid grid-cols-3 gap-3 sm:gap-6 pt-6 max-w-2xl mx-auto">
-        <div className="glass-panel p-4 rounded-xl text-center">
-          <span className="block text-xl sm:text-2xl font-black text-rose-500">+50</span>
-          <span className="text-[10px] sm:text-xs font-medium text-slate-500 dark:text-slate-400 uppercase tracking-wider">Workflows</span>
-        </div>
-        <div className="glass-panel p-4 rounded-xl text-center">
-          <span className="block text-xl sm:text-2xl font-black text-amber-500">+1.2k</span>
-          <span className="text-[10px] sm:text-xs font-medium text-slate-500 dark:text-slate-400 uppercase tracking-wider">Hrs Ahorradas</span>
-        </div>
-        <div className="glass-panel p-4 rounded-xl text-center">
-          <span className="block text-xl sm:text-2xl font-black text-emerald-500">100%</span>
-          <span className="text-[10px] sm:text-xs font-medium text-slate-500 dark:text-slate-400 uppercase tracking-wider">Cloud & VPS</span>
-        </div>
-      </div>
-
     </section>
   );
 }
