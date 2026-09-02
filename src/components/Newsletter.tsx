@@ -1,83 +1,59 @@
 'use client';
 
-import { useState } from 'react';
+import React, { useState } from 'react';
+import { Mail, Send, Sparkles } from 'lucide-react';
 
 export default function Newsletter() {
   const [email, setEmail] = useState('');
-  const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
+  const [subscribed, setSubscribed] = useState(false);
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    if (!email) return;
-
-    setStatus('loading');
-
-    const botToken = process.env.NEXT_PUBLIC_TELEGRAM_BOT_TOKEN;
-    const chatId = process.env.NEXT_PUBLIC_TELEGRAM_CHAT_ID;
-
-    // Si las variables están configuradas, enviamos el mensaje a Telegram
-    if (botToken && chatId) {
-      try {
-        const message = `🔥 *¡Nuevo Lead en n8nflow!*\n\n📧 *Email:* \`${email}\`\n📅 *Fecha:* ${new Date().toLocaleString('es-ES')}`;
-
-        await fetch(`https://api.telegram.org/bot${botToken}/sendMessage`, {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({
-            chat_id: chatId,
-            text: message,
-            parse_mode: 'Markdown',
-          }),
-        });
-      } catch (error) {
-        console.error('Error enviando notificación a Telegram:', error);
-      }
-    }
-
-    // Simulamos respuesta de éxito al usuario
-    setTimeout(() => {
-      setStatus('success');
+    if (email) {
+      setSubscribed(true);
       setEmail('');
-    }, 800);
+    }
   };
 
   return (
-    <section className="max-w-4xl mx-auto px-4 my-20">
-      <div className="glass-panel p-8 sm:p-12 rounded-3xl relative overflow-hidden border border-slate-200 dark:border-slate-800 text-center shadow-2xl">
-        <div className="absolute top-0 right-0 w-64 h-64 bg-rose-500/10 blur-3xl rounded-full pointer-events-none" />
+    <section className="max-w-[1120px] mx-auto px-4 py-8">
+      <div className="p-8 sm:p-10 rounded-[32px] bg-[linear-gradient(180deg,rgba(255,255,255,0.92)_0%,rgba(255,255,255,0.70)_100%)] border border-white/60 shadow-[0_28px_70px_-16px_rgba(60,20,80,0.14)] backdrop-blur-[24px] text-center max-w-3xl mx-auto space-y-6">
+        <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[11px] font-[650] bg-violet-500/10 text-violet-600 border border-violet-500/20">
+          <Sparkles className="w-3.5 h-3.5" /> Newsletter
+        </div>
 
-        <span className="inline-block px-3 py-1 rounded-full bg-rose-500/10 text-rose-600 dark:text-rose-400 font-mono text-xs font-bold uppercase tracking-wider mb-4 border border-rose-500/20">
-          🎁 Regalo de Bienvenida
-        </span>
+        <div className="space-y-2">
+          <h2 className="text-2xl sm:text-3xl font-[800] text-[#1b1730] tracking-tight">
+            Recibe nuevas plantillas semanales en tu inbox
+          </h2>
+          <p className="text-zinc-600 font-[500] text-xs sm:text-sm max-w-lg mx-auto">
+            Únete a más de 1,200 automatizadores. Te enviaremos nuevas plantillas gratuitas y tutoriales de n8n.
+          </p>
+        </div>
 
-        <h2 className="text-2xl sm:text-4xl font-black text-slate-900 dark:text-white mb-3">
-          Consigue nuestra Plantilla Starter GRATIS
-        </h2>
-
-        <p className="text-slate-600 dark:text-slate-300 text-sm sm:text-base max-w-xl mx-auto mb-8">
-          Suscríbete y recibe directamente en tu email el flujo de automatización con IA para filtrar y clasificar emails entrantes en tiempo real.
-        </p>
-
-        {status === 'success' ? (
-          <div className="p-4 rounded-2xl bg-emerald-500/10 border border-emerald-500/30 text-emerald-600 dark:text-emerald-400 font-bold text-sm max-w-md mx-auto animate-fadeIn">
-            🎉 ¡Listo! Revisa tu bandeja de entrada o Telegram, te hemos enviado el enlace de descarga.
+        {subscribed ? (
+          <div className="p-4 rounded-full bg-emerald-50 border border-emerald-200 text-emerald-700 text-xs font-[650] max-w-md mx-auto">
+            ¡Gracias por suscribirte! Te hemos enviado un correo de bienvenida.
           </div>
         ) : (
-          <form onSubmit={handleSubmit} className="flex flex-col sm:flex-row gap-3 max-w-md mx-auto">
-            <input
-              type="email"
-              required
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              placeholder="tu@email.com"
-              className="flex-1 px-4 py-3.5 rounded-2xl bg-slate-100 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-slate-900 dark:text-white placeholder-slate-400 text-sm focus:outline-none focus:ring-2 focus:ring-rose-500"
-            />
+          <form onSubmit={handleSubmit} className="flex flex-col sm:flex-row gap-2 max-w-md mx-auto">
+            <div className="relative flex-1">
+              <Mail className="w-4 h-4 text-zinc-400 absolute left-3.5 top-1/2 -translate-y-1/2" />
+              <input
+                type="email"
+                required
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                placeholder="tu@email.com"
+                className="w-full pl-10 pr-4 py-2.5 rounded-full bg-white/80 border border-white/60 text-xs font-[550] text-[#1b1730] placeholder:text-zinc-400 focus:outline-none focus:ring-2 focus:ring-violet-500/20"
+              />
+            </div>
             <button
               type="submit"
-              disabled={status === 'loading'}
-              className="px-6 py-3.5 rounded-2xl bg-gradient-to-r from-rose-500 to-orange-500 text-white font-bold text-xs uppercase tracking-wider shadow-lg shadow-rose-500/30 hover:scale-105 active:scale-95 transition-all disabled:opacity-50 shrink-0"
+              className="px-6 py-2.5 rounded-full bg-[#1b1730] hover:bg-black text-white text-xs font-[650] transition-colors shadow-sm flex items-center justify-center gap-2"
             >
-              {status === 'loading' ? 'Enviando...' : 'Obtener Gratis 🚀'}
+              <span>Suscribirme</span>
+              <Send className="w-3.5 h-3.5" />
             </button>
           </form>
         )}
