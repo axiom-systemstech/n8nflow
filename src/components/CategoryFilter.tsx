@@ -1,40 +1,41 @@
 'use client';
 
-import { Category } from '../types/workflow';
+import React from 'react';
 
 interface CategoryFilterProps {
   activeCategory: string;
   setActiveCategory: (category: string) => void;
 }
 
-const CATEGORIES: { label: string; value: string }[] = [
-  { label: '🔥 Todos', value: 'all' },
-  { label: '🤖 IA & GPT', value: 'ia' },
-  { label: '📈 Marketing', value: 'marketing' },
-  { label: '💼 Ventas', value: 'ventas' },
-  { label: '⚡ Productividad', value: 'productividad' },
+const CATEGORIES = [
+  { id: 'all', label: 'Todos los Flujos' },
+  { id: 'marketing', label: 'Marketing & Redes' },
+  { id: 'sales', label: 'Ventas & CRM' },
+  { id: 'ai', label: 'Inteligencia Artificial' },
+  { id: 'operations', label: 'Operaciones & PDF' },
 ];
 
 export default function CategoryFilter({ activeCategory, setActiveCategory }: CategoryFilterProps) {
   return (
-    <div className="flex items-center justify-center gap-2 flex-wrap mb-10 px-4">
-      {CATEGORIES.map((cat) => {
-        const isActive = activeCategory === cat.value;
-        return (
-          <button
-            key={cat.value}
-            onClick={() => setActiveCategory(cat.value)}
-            className={`px-4 py-2 rounded-2xl text-xs sm:text-sm font-bold transition-all duration-200 cursor-pointer ${
-              isActive
-                ? 'bg-rose-500 text-white shadow-lg shadow-rose-500/30 scale-105'
-                : 'glass-panel text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white'
-            }`}
-          >
-            {cat.label}
-          </button>
-        );
-      })}
+    <div className="max-w-[1120px] mx-auto px-4 my-8">
+      <div className="flex items-center gap-2 overflow-x-auto pb-2 scrollbar-none justify-start md:justify-center">
+        {CATEGORIES.map((cat) => {
+          const isActive = activeCategory === cat.id;
+          return (
+            <button
+              key={cat.id}
+              onClick={() => setActiveCategory(cat.id)}
+              className={`px-4 py-2 rounded-full text-[13px] font-[600] whitespace-nowrap transition-all ${
+                isActive
+                  ? 'bg-[#1b1730] text-white shadow-md'
+                  : 'bg-white/70 text-zinc-600 hover:text-zinc-900 border border-white/60 hover:bg-white backdrop-blur-md'
+              }`}
+            >
+              {cat.label}
+            </button>
+          );
+        })}
+      </div>
     </div>
   );
 }
-
