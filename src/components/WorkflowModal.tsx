@@ -1,6 +1,7 @@
 'use client';
 
 import { Workflow } from '../types/workflow';
+import AppLogo from './AppLogo';
 
 interface WorkflowModalProps {
   workflow: Workflow | null;
@@ -40,13 +41,19 @@ export default function WorkflowModal({ workflow, onClose }: WorkflowModalProps)
           {workflow.longDescription || workflow.description}
         </p>
 
-        {/* Apps e Integraciones */}
+        {/* Integraciones requeridas con Logos Reales */}
         <div className="mb-6">
-          <h4 className="text-xs font-mono font-bold uppercase text-slate-400 mb-2">Integraciones requeridas</h4>
+          <h4 className="text-xs font-mono font-bold uppercase text-slate-400 mb-3">
+            Integraciones requeridas
+          </h4>
           <div className="flex flex-wrap gap-2">
             {workflow.apps.map((app, i) => (
-              <span key={i} className="px-3 py-1 rounded-xl bg-slate-100 dark:bg-slate-800/80 text-xs font-semibold">
-                ⚡ {app}
+              <span 
+                key={i} 
+                className="inline-flex items-center gap-2 px-3 py-1.5 rounded-xl bg-slate-100 dark:bg-slate-800/90 border border-slate-200/70 dark:border-slate-700/60 text-xs font-semibold text-slate-800 dark:text-slate-200 shadow-sm"
+              >
+                <AppLogo appName={app} className="w-4 h-4" />
+                <span>{app}</span>
               </span>
             ))}
           </div>
@@ -88,4 +95,3 @@ export default function WorkflowModal({ workflow, onClose }: WorkflowModalProps)
     </div>
   );
 }
-
