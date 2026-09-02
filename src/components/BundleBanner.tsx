@@ -50,7 +50,7 @@ export default function BundleBanner() {
               </div>
 
               <a
-                href="https://t.me/n8nflow_support"
+                href="https://t.me/n8nfloww"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="w-full py-3 px-6 rounded-full bg-violet-600 hover:bg-violet-500 text-white font-[700] text-sm transition-all shadow-lg flex items-center justify-center gap-2 group"
