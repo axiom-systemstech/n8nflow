@@ -1,57 +1,70 @@
 'use client';
 
-import { useState } from 'react';
+import React, { useState } from 'react';
+import { ChevronDown, HelpCircle } from 'lucide-react';
 
 const FAQS = [
   {
-    q: '¿Qué recibo exactamente al comprar una plantilla?',
-    a: 'Recibirás acceso inmediato a la descarga del archivo `.json` de la automatización junto con una guía rápida en PDF sobre cómo configurar las credenciales y nodos.',
+    q: '¿Cómo recibo las plantillas tras la compra?',
+    a: 'La descarga es inmediata. Recibirás un enlace directo para descargar el archivo JSON de la plantilla, el cual puedes importar en tu n8n en menos de 10 segundos.',
   },
   {
-    q: '¿Funciona con la versión gratuita de n8n?',
-    a: 'Sí, el 100% de nuestras plantillas son totalmente compatibles tanto con n8n Cloud como con instancias Self-Hosted en Docker/VPS.',
+    q: '¿Qué versión de n8n necesito?',
+    a: 'Nuestras plantillas están probadas en las versiones más recientes de n8n (v1.0+). Funcionan tanto en la versión Self-Hosted (Docker) como en n8n Cloud.',
   },
   {
-    q: '¿Necesito saber programar?',
-    a: 'No. Las plantillas están listas para conectar y usar. Solo necesitas pegar tus claves API de las herramientas que utilices.',
+    q: '¿Qué pasa si una plantilla no me funciona?',
+    a: 'Ofrecemos soporte post-venta. Si tienes algún problema con la importación o configuración de credenciales, nuestro equipo te guiará paso a paso.',
   },
   {
-    q: '¿Tengo soporte si alguna integración no me funciona?',
-    a: 'Por supuesto. Cada compra incluye soporte por correo electrónico para resolver cualquier duda durante el despliegue.',
+    q: '¿Necesito conocimientos de programación?',
+    a: 'No. Las plantillas vienen completamente estructuradas. Únicamente tendrás que sustituir tus claves de API o tokens de las aplicaciones que uses.',
   },
 ];
 
 export default function FaqSection() {
-  const [openIndex, setOpenIndex] = useState<number | null>(null);
+  const [openIndex, setOpenIndex] = useState<number | null>(0);
+
+  const toggleFaq = (index: number) => {
+    setOpenIndex(openIndex === index ? null : index);
+  };
 
   return (
-    <section id="faq" className="max-w-3xl mx-auto px-4 py-16 scroll-mt-24">
-      <div className="text-center mb-12 space-y-2">
-        <span className="text-xs font-mono font-bold text-amber-500 uppercase tracking-widest">
-          Resolvemos tus dudas
-        </span>
-        <h2 className="text-2xl sm:text-4xl font-black text-slate-900 dark:text-white">
+    <section className="max-w-[1120px] mx-auto px-4 py-12">
+      <div className="text-center max-w-xl mx-auto mb-10">
+        <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[11px] font-[650] bg-violet-500/10 text-violet-600 border border-violet-500/20 mb-2">
+          <HelpCircle className="w-3.5 h-3.5" /> FAQ
+        </div>
+        <h2 className="text-2xl sm:text-3xl font-[800] text-[#1b1730] tracking-tight">
           Preguntas Frecuentes
         </h2>
       </div>
 
-      <div className="space-y-4">
-        {FAQS.map((faq, index) => {
-          const isOpen = openIndex === index;
+      <div className="max-w-2xl mx-auto space-y-3">
+        {FAQS.map((faq, idx) => {
+          const isOpen = openIndex === idx;
           return (
             <div
-              key={index}
-              onClick={() => setOpenIndex(isOpen ? null : index)}
-              className="glass-panel rounded-2xl p-5 cursor-pointer transition-all duration-200"
+              key={idx}
+              className="rounded-[24px] bg-[linear-gradient(180deg,rgba(255,255,255,0.88)_0%,rgba(255,255,255,0.62)_100%)] border border-white/40 shadow-xs backdrop-blur-[24px] overflow-hidden transition-all"
             >
-              <div className="flex justify-between items-center font-bold text-sm sm:text-base text-slate-900 dark:text-white">
-                <span>{faq.q}</span>
-                <span className="text-rose-500 font-mono text-lg">{isOpen ? '−' : '+'}</span>
-              </div>
+              <button
+                onClick={() => toggleFaq(idx)}
+                className="w-full p-5 text-left flex items-center justify-between gap-4"
+              >
+                <span className="text-xs sm:text-sm font-[750] text-[#1b1730]">
+                  {faq.q}
+                </span>
+                <ChevronDown
+                  className={`w-4 h-4 text-zinc-400 transition-transform duration-200 ${
+                    isOpen ? 'rotate-180 text-violet-600' : ''
+                  }`}
+                />
+              </button>
               {isOpen && (
-                <p className="mt-3 text-xs sm:text-sm text-slate-600 dark:text-slate-400 leading-relaxed border-t border-slate-200/40 dark:border-slate-800/60 pt-3">
+                <div className="px-5 pb-5 pt-0 text-xs text-zinc-600 font-[500] leading-relaxed border-t border-zinc-100/60 pt-3">
                   {faq.a}
-                </p>
+                </div>
               )}
             </div>
           );
@@ -60,4 +73,3 @@ export default function FaqSection() {
     </section>
   );
 }
-
