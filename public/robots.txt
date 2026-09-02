@@ -1,3 +1,23 @@
+# Permitir a todos los buscadores convencionales (Google, Bing, Yahoo, DuckDuckGo)
 User-agent: *
 Allow: /
+
+# Permitir explícitamente a los bots de Búsqueda de IA y LLMs
+User-agent: GPTBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+# Indicar la ruta oficial del mapa del sitio
+Sitemap: https://n8nflow-eight.vercel.app/sitemap.xml
 
