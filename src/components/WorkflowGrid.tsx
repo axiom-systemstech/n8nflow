@@ -1,7 +1,7 @@
 'use client';
 
 import React from 'react';
-import { ArrowUpRight, Zap, CheckCircle } from 'lucide-react';
+import { ArrowUpRight, Zap, CheckCircle, Sparkles } from 'lucide-react';
 import { Workflow } from '../types/workflow';
 
 interface WorkflowGridProps {
@@ -12,11 +12,23 @@ interface WorkflowGridProps {
 export default function WorkflowGrid({ workflows, onSelectWorkflow }: WorkflowGridProps) {
   if (workflows.length === 0) {
     return (
-      <div className="max-w-[1120px] mx-auto px-4 py-12 text-center">
-        <div className="p-8 rounded-[28px] bg-[linear-gradient(180deg,rgba(255,255,255,0.88)_0%,rgba(255,255,255,0.62)_100%)] border border-white/40 shadow-sm backdrop-blur-[24px]">
-          <p className="text-zinc-500 font-[550] text-sm">
-            No se encontraron flujos que coincidan con tu búsqueda.
+      <div className="max-w-[1120px] mx-auto px-4 py-16 text-center">
+        <div className="p-10 rounded-[32px] bg-[linear-gradient(180deg,rgba(255,255,255,0.88)_0%,rgba(255,255,255,0.62)_100%)] border border-white/40 shadow-[0_24px_64px_-16px_rgba(60,20,80,0.12)] backdrop-blur-[24px] max-w-lg mx-auto flex flex-col items-center justify-center">
+          <div className="w-12 h-12 rounded-2xl bg-violet-500/10 border border-violet-500/20 flex items-center justify-center mb-4 text-violet-600">
+            <Sparkles className="w-6 h-6 animate-pulse" />
+          </div>
+          <h3 className="text-xl font-[750] text-[#1b1730] mb-2">
+            Nuevas automatizaciones en camino
+          </h3>
+          <p className="text-zinc-600 font-[500] text-sm leading-relaxed mb-6">
+            Estamos preparando y verificando las primeras plantillas de n8n para publicar en Gumroad. ¡Suscríbete abajo para recibir un aviso cuando estén disponibles!
           </p>
+          <a
+            href="#newsletter"
+            className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-[#1b1730] text-white text-xs font-[650] hover:bg-violet-600 transition-colors shadow-md"
+          >
+            Avisarme del lanzamiento <ArrowUpRight className="w-4 h-4" />
+          </a>
         </div>
       </div>
     );
