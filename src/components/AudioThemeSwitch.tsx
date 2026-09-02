@@ -3,7 +3,8 @@
 import { useState, useEffect } from 'react';
 
 export default function AudioThemeSwitch() {
-  const [isDark, setIsDark] = useState(true);
+  // Inicializamos en false para Modo Claro por defecto
+  const [isDark, setIsDark] = useState(false);
 
   useEffect(() => {
     const root = document.documentElement;
