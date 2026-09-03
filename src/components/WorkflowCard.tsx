@@ -1,5 +1,6 @@
 import React from 'react';
 import { Workflow } from '../types/workflow';
+import AppBadge from './AppBadge';
 
 interface WorkflowCardProps {
   workflow: Workflow;
@@ -40,9 +41,7 @@ export const WorkflowCard: React.FC<WorkflowCardProps> = ({ workflow, onSelect }
 
         <div className="flex flex-wrap gap-1.5 mb-4">
           {workflow.apps.map((app) => (
-            <span key={app} className="text-xs px-2 py-0.5 rounded bg-slate-800 text-slate-300 border border-slate-700">
-              {app}
-            </span>
+            <AppBadge key={app} appName={app} />
           ))}
         </div>
 
@@ -53,3 +52,5 @@ export const WorkflowCard: React.FC<WorkflowCardProps> = ({ workflow, onSelect }
     </div>
   );
 };
+
+export default WorkflowCard;
