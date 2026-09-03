@@ -16,4 +16,5 @@ export interface Workflow {
   requirements: string[]; // ej: ['Cuenta de OpenAI', 'API Key de Stripe']
   rating?: number;
   reviewsCount?: number;
+  imageUrl?: string;
 }
