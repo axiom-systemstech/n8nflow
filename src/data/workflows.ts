@@ -1,3 +1,3 @@
-import { Workflow } from '@/types/workflow';
+import { Workflow } from '../types/workflow';
 
 export const WORKFLOWS: Workflow[] = [];
