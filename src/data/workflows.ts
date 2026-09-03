@@ -5,13 +5,12 @@ export const WORKFLOWS: Workflow[] = [
     id: 'lead-response-engine',
     title: 'Lead Response Engine — AI Lead Qualification for n8n',
     description: 'Turns your existing form or webhook into an automated lead qualification pipeline using AI scoring, Google Sheets storage, and team alerts.',
-    category: 'Sales / Lead Gen',
+    category: 'Leads & CRM',
     price: 29,
     apps: ['n8n', 'OpenAI', 'Google Sheets', 'Gmail', 'Webhook'],
     downloadUrl: 'https://n8nflow.gumroad.com/l/LeadResponseEngineAILeadQualificationforn8n',
     featured: true,
-    // Puedes colocar la imagen en public/images/lead-engine.jpg
-    imageUrl: '/images/lead-engine.jpg', 
+    imageUrl: '/images/lead-engine.jpg',
     details: {
       overview: 'How many leads go cold because nobody reviews them quickly enough? Lead Response Engine turns your existing form or webhook into an automated lead qualification pipeline. A lead comes in -> AI analyzes the intent -> The workflow assigns a score -> The lead is stored in Google Sheets -> Your team receives an internal alert. No CRM migration. No giant automation. No building from scratch.',
       highlights: [
