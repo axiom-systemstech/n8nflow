@@ -17,5 +17,6 @@ export const WORKFLOWS: Workflow[] = [
     requirements: ['Cuenta de n8n', 'API Key de OpenAI', 'Cuenta de Google (Sheets y Gmail)'],
     rating: 5.0,
     reviewsCount: 1,
+    imageUrl: '/images/lead-engine.jpg',
   }
 ];
