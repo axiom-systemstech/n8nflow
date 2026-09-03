@@ -1,5 +1,6 @@
 import React from 'react';
 import { Workflow } from '../types/workflow';
+import AppBadge from './AppBadge';
 
 interface WorkflowModalProps {
   workflow: Workflow | null;
@@ -40,9 +41,7 @@ export const WorkflowModal: React.FC<WorkflowModalProps> = ({ workflow, onClose 
             <h4 className="text-xs font-semibold text-slate-400 uppercase tracking-wider mb-2">Aplicaciones Integradas</h4>
             <div className="flex flex-wrap gap-2">
               {workflow.apps.map((app) => (
-                <span key={app} className="text-xs px-2.5 py-1 rounded-md bg-slate-800 text-slate-300 border border-slate-700">
-                  {app}
-                </span>
+                <AppBadge key={app} appName={app} />
               ))}
             </div>
           </div>
