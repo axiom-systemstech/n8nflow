@@ -86,3 +86,4 @@ export const WorkflowModal: React.FC<WorkflowModalProps> = ({ workflow, onClose 
   );
 };
 
+export default WorkflowModal;
