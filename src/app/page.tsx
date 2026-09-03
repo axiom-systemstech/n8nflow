@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import Navbar from '../components/Navbar';
 import Hero from '../components/Hero';
+import AppMarquee from '../components/AppMarquee';
 import HowItWorks from '../components/HowItWorks';
 import RoiCalculator from '../components/RoiCalculator';
 import CategoryFilter from '../components/CategoryFilter';
@@ -40,6 +41,8 @@ export default function Home() {
       <Navbar />
 
       <Hero searchQuery={searchQuery} setSearchQuery={setSearchQuery} />
+
+      <AppMarquee />
 
       <HowItWorks />
 
