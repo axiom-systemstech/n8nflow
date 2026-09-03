@@ -1,7 +1,4 @@
-'use client';
-
 import React from 'react';
-import { X, CheckCircle, Download, Zap, Shield } from 'lucide-react';
 import { Workflow } from '../types/workflow';
 
 interface WorkflowModalProps {
@@ -9,96 +6,83 @@ interface WorkflowModalProps {
   onClose: () => void;
 }
 
-export default function WorkflowModal({ workflow, onClose }: WorkflowModalProps) {
+export const WorkflowModal: React.FC<WorkflowModalProps> = ({ workflow, onClose }) => {
   if (!workflow) return null;
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/40 backdrop-blur-md animate-fade-in">
-      <div 
-        className="relative w-full max-w-lg p-6 sm:p-8 rounded-[32px] bg-[linear-gradient(180deg,rgba(255,255,255,0.96)_0%,rgba(255,255,255,0.85)_100%)] border border-white shadow-[0_32px_80px_-16px_rgba(0,0,0,0.2)] backdrop-blur-[32px] space-y-6 max-h-[90vh] overflow-y-auto"
-        onClick={(e) => e.stopPropagation()}
-      >
-        {/* Botón cerrar */}
-        <button
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/70 backdrop-blur-sm">
+      <div className="bg-slate-900 border border-slate-800 rounded-2xl max-w-2xl w-full max-h-[90vh] overflow-y-auto relative shadow-2xl">
+        <button 
           onClick={onClose}
-          className="absolute top-5 right-5 p-2 rounded-full bg-zinc-100 hover:bg-zinc-200 text-zinc-600 transition-colors"
+          className="absolute top-4 right-4 text-slate-400 hover:text-white p-2 rounded-lg bg-slate-800/50 hover:bg-slate-800 transition-colors z-10"
         >
-          <X className="w-4 h-4" />
+          ✕
         </button>
 
-        {/* Encabezado */}
-        <div className="space-y-3">
-          <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[11px] font-[650] bg-violet-500/10 text-violet-600 border border-violet-500/20">
-            <Zap className="w-3 h-3 fill-violet-600" /> {workflow.category.toUpperCase()}
+        {workflow.imageUrl && (
+          <div className="w-full h-56 bg-slate-950 overflow-hidden">
+            <img 
+              src={workflow.imageUrl} 
+              alt={workflow.title} 
+              className="w-full h-full object-cover"
+            />
           </div>
-          <h2 className="text-xl sm:text-2xl font-[800] text-[#1b1730] leading-tight">
-            {workflow.title}
-          </h2>
-        </div>
+        )}
 
-        {/* Apps vinculadas */}
-        <div>
-          <h4 className="text-[11px] font-[700] text-zinc-400 uppercase tracking-wider mb-2">
-            Aplicaciones integradas
-          </h4>
-          <div className="flex flex-wrap gap-2">
-            {workflow.apps.map((app, idx) => (
-              <span
-                key={idx}
-                className="px-3 py-1 rounded-full bg-white border border-zinc-200 text-xs font-[600] text-zinc-700 shadow-2xs"
-              >
-                {app}
-              </span>
-            ))}
-          </div>
-        </div>
+        <div className="p-6">
+          <span className="text-xs uppercase tracking-wider font-semibold px-2.5 py-1 rounded-full bg-purple-500/10 text-purple-400 border border-purple-500/20 inline-block mb-3">
+            {workflow.category}
+          </span>
 
-        {/* Descripción */}
-        <div className="space-y-2">
-          <h4 className="text-[11px] font-[700] text-zinc-400 uppercase tracking-wider">
-            Detalles de la automatización
-          </h4>
-          <p className="text-xs sm:text-sm text-zinc-600 font-[500] leading-relaxed">
-            {workflow.description}
-          </p>
-        </div>
+          <h2 className="text-2xl font-bold text-white mb-3">{workflow.title}</h2>
 
-        {/* Puntos incluidos */}
-        <div className="p-4 rounded-[20px] bg-violet-50/50 border border-violet-100 space-y-2 text-xs font-[600] text-zinc-700">
-          <div className="flex items-center gap-2">
-            <CheckCircle className="w-4 h-4 text-emerald-500" />
-            <span>Archivo JSON listo para importar en n8n</span>
-          </div>
-          <div className="flex items-center gap-2">
-            <CheckCircle className="w-4 h-4 text-emerald-500" />
-            <span>Guía de instalación de credenciales</span>
-          </div>
-          <div className="flex items-center gap-2">
-            <Shield className="w-4 h-4 text-violet-600" />
-            <span>Garantía de soporte técnico</span>
-          </div>
-        </div>
-
-        {/* Precio y Acción */}
-        <div className="pt-4 border-t border-zinc-200/60 flex items-center justify-between gap-4">
-          <div>
-            <span className="text-[11px] text-zinc-400 font-[600] block">Precio total</span>
-            <span className="text-2xl font-[800] text-[#1b1730]">${workflow.price} USD</span>
+          <div className="mb-6">
+            <h4 className="text-xs font-semibold text-slate-400 uppercase tracking-wider mb-2">Aplicaciones Integradas</h4>
+            <div className="flex flex-wrap gap-2">
+              {workflow.apps.map((app) => (
+                <span key={app} className="text-xs px-2.5 py-1 rounded-md bg-slate-800 text-slate-300 border border-slate-700">
+                  {app}
+                </span>
+              ))}
+            </div>
           </div>
 
-          <button
-            onClick={() => {
-              alert(`¡Simulación de compra para: ${workflow.title}!`);
-              onClose();
-            }}
-            className="px-6 py-3 rounded-full bg-violet-600 hover:bg-violet-500 text-white font-[700] text-xs sm:text-sm transition-all shadow-md flex items-center gap-2"
-          >
-            <Download className="w-4 h-4" />
-            <span>Obtener Plantilla</span>
-          </button>
+          <div className="mb-6">
+            <h4 className="text-xs font-semibold text-slate-400 uppercase tracking-wider mb-2">Detalles de la Automatización</h4>
+            <p className="text-slate-300 text-sm leading-relaxed mb-4">
+              {workflow.longDescription || workflow.description}
+            </p>
+
+            {workflow.requirements && workflow.requirements.length > 0 && (
+              <div className="bg-slate-800/40 rounded-xl p-4 border border-slate-800">
+                <h5 className="text-xs font-semibold text-slate-300 mb-2">Requisitos:</h5>
+                <ul className="list-disc list-inside text-xs text-slate-400 space-y-1">
+                  {workflow.requirements.map((req, idx) => (
+                    <li key={idx}>{req}</li>
+                  ))}
+                </ul>
+              </div>
+            )}
+          </div>
+
+          <div className="flex items-center justify-between pt-4 border-t border-slate-800">
+            <div>
+              <span className="text-xs text-slate-400 block">Precio total</span>
+              <span className="text-2xl font-bold text-white">${workflow.price} USD</span>
+            </div>
+
+            <a 
+              href={workflow.gumroadUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="py-3 px-6 rounded-xl bg-purple-600 hover:bg-purple-500 text-white font-semibold text-sm transition-colors flex items-center gap-2 shadow-lg shadow-purple-600/20"
+            >
+              Obtener Plantilla ↗
+            </a>
+          </div>
         </div>
       </div>
     </div>
   );
-}
+};
 
